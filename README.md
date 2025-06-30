@@ -1,4 +1,4 @@
-readme_content = """# 📄 get_next_line - Satır Satır Dosya Okuma
+# 📄 get_next_line - Satır Satır Dosya Okuma
 
 `get_next_line`, bir dosyadan satır satır veri okumayı sağlayan bir fonksiyondur. Her çağrıldığında bir sonraki satırı döner ve C dilinde **statik değişken kullanımı**, **buffer yönetimi**, **file descriptor (fd)** ile çalışma gibi birçok ileri konuyu öğretmeyi amaçlar.
 
@@ -8,8 +8,8 @@ readme_content = """# 📄 get_next_line - Satır Satır Dosya Okuma
 
 C'de satır satır okuma işlemi `fgets`, `getline` gibi fonksiyonlarla yapılabilir. Bu projede ise bunları **kendi başımıza sıfırdan** yazmamız beklenir. Bu sayede:
 
-- Sistem çağrısı (`read`) kullanımı  
-- Bellek yönetimi (`malloc`, `free`)  
+- Sistem çağrısı (`read`) kullanımı
+- Bellek yönetimi (`malloc`, `free`)
 - Statik değişkenlerle durum koruma (stateful fonksiyonlar)
 
 konularında uzmanlaşmak hedeflenir.
@@ -31,7 +31,7 @@ konularında uzmanlaşmak hedeflenir.
 - Bellek sızıntılarını önlemek için manuel `malloc/free` yönetimi uyguladım.
 
 ### ⚠️ Edge Case Yönetimi
-- Boş dosyalar, sadece `\\n` içeren satırlar, EOF'ta newline olmayan son satır gibi durumları doğru şekilde ele aldım.
+- Boş dosyalar, sadece `\n` içeren satırlar, EOF'ta newline olmayan son satır gibi durumları doğru şekilde ele aldım.
 - Hatalı fd, invalid `BUFFER_SIZE` gibi durumlar için güvenli kontroller ekledim.
 
 ---
@@ -51,5 +51,11 @@ int main(void)
         free(line);
     }
     close(fd);
-    return 0;
 }
+
+🛠️ Derleme
+Makefile ile kolayca derleyebilirsin:
+make        # get_next_line.a üretir
+make clean  # .o dosyalarını siler
+make fclean # tüm çıkışları temizler
+make re     # yeniden derler
